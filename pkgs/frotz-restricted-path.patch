@@ -1,0 +1,22 @@
+--- a/src/curses/ux_input.c
++++ b/src/curses/ux_input.c
+@@ -1125,7 +1125,7 @@
+ 		if (file_name[strlen(file_name)-1] != PATH_SEPARATOR) {
+ 			strncat(file_name, path_separator, FILENAME_MAX - strlen(file_name) - 2);
+ 		}
+-		strncat(file_name, tempname, strlen(file_name) - strlen(tempname) - 1);
++		strncat(file_name, tempname, FILENAME_MAX - strlen(file_name));
+ 	}
+ 
+ 	ext = strrchr(file_name, '.');
+--- a/src/dumb/dinput.c
++++ b/src/dumb/dinput.c
+@@ -589,7 +589,7 @@
+ 		if (file_name[strlen(file_name)-1] != PATH_SEPARATOR) {
+ 			strncat(file_name, path_separator, FILENAME_MAX - strlen(file_name) - 2);
+ 		}
+-		strncat(file_name, tempname, strlen(file_name) - strlen(tempname) - 1);
++		strncat(file_name, tempname, FILENAME_MAX - strlen(file_name));
+ 	}
+ 
+ 	/* Add appropriate filename extensions if not already there. */
