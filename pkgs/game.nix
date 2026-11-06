@@ -9,6 +9,7 @@
   zork-stories,
   zork-crt-term,
   zork-icons,
+  gameEntries,
   game,
 }:
 
@@ -37,6 +38,7 @@ let
     exec = game;
     icon = game;
     startupWMClass = game;
+    noDisplay = !gameEntries;
     categories = [
       "Game"
       "AdventureGame"

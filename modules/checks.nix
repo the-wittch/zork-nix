@@ -14,6 +14,7 @@ in
       zork = config.legacyPackages.zork;
       green = zork.overrideScope (_: _: { phosphor = "green"; });
       typo = zork.overrideScope (_: _: { profile.screenCurvatur = 0.4; });
+      withGames = zork.overrideScope (_: _: { gameEntries = true; });
 
       # stands in for frotz inside the CRT and reports how it was started
       probe = pkgs.writeShellScriptBin "frotz" ''
@@ -123,6 +124,9 @@ in
               for name in zork zork1 zork2 zork3; do
                 test -f ${zork.zork-nix}/share/icons/hicolor/scalable/apps/$name.svg
               done
+              ! grep -q NoDisplay ${zork.zork-nix}/share/applications/zork.desktop
+              grep -qx NoDisplay=true ${zork.zork-nix}/share/applications/zork1.desktop
+              ! grep -q NoDisplay ${withGames.zork-nix}/share/applications/zork1.desktop
               touch $out
             '';
 

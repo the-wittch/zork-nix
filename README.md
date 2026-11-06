@@ -40,7 +40,7 @@ Then, in your NixOS configuration:
 }
 ```
 
-For Home Manager, import `inputs.zork-nix.homeModules.default` instead. Either way you get the `zork`, `zork1`, `zork2` and `zork3` desktop entries, and the plain commands.
+For Home Manager, import `inputs.zork-nix.homeModules.default` instead. Either way the app menu gets one Zork entry, which opens the menu, and you get the `zork1`, `zork2`, `zork3` and plain commands. Set `gameEntries = true` to list each game in the app menu as well.
 
 ## Saves
 

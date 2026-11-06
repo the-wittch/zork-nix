@@ -16,6 +16,7 @@ lib.makeScope newScope (self: {
 
   phosphor = "amber";
   fullscreen = false;
+  gameEntries = false;
   profile = { };
 
   phosphorColor =

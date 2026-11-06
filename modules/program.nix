@@ -11,7 +11,12 @@ let
       cfg = config.programs.zork-nix;
       zork = (pkgs.callPackage ../pkgs { }).overrideScope (
         _: _: {
-          inherit (cfg) phosphor fullscreen profile;
+          inherit (cfg)
+            phosphor
+            fullscreen
+            gameEntries
+            profile
+            ;
         }
       );
     in
@@ -33,6 +38,12 @@ let
           type = lib.types.bool;
           default = false;
           description = "Open the games full screen.";
+        };
+
+        gameEntries = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "List Zork I, II and III in the app menu too, not just the Zork menu.";
         };
 
         profile = lib.mkOption {
