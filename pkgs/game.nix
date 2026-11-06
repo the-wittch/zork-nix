@@ -4,10 +4,9 @@
   makeDesktopItem,
   symlinkJoin,
   coreutils,
-  frotz,
   games,
-  zork-stories,
   zork-crt-term,
+  zork-menu,
   zork-icons,
   gameEntries,
   game,
@@ -23,10 +22,10 @@ let
       zork-crt-term
     ];
     text = ''
-      saves=''${XDG_DATA_HOME:-$HOME/.local/share}/zork/${game}
-      mkdir -p "$saves"
-      RESOURCE_NAME=${game} exec zork-crt-term ${lib.escapeShellArg info.title} "$saves" \
-        ${lib.getExe frotz} -R "$saves" ${zork-stories}/share/zork/${game}.z3
+      base=''${XDG_DATA_HOME:-$HOME/.local/share}/zork
+      mkdir -p "$base/${game}"
+      RESOURCE_NAME=${game} exec zork-crt-term ${lib.escapeShellArg info.title} "$base/${game}" \
+        ${lib.getExe zork-menu} "$base" ${game}
     '';
   };
 

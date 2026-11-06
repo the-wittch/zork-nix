@@ -1,0 +1,24 @@
+--- a/src/curses/ux_init.c
++++ b/src/curses/ux_init.c
+@@ -316,8 +316,7 @@
+ 		memcpy(f_setup.save_name, f_setup.story_name, (strlen(f_setup.story_name) + strlen(EXT_SAVE)) * sizeof(char));
+ 		strncat(f_setup.save_name, EXT_SAVE, strlen(EXT_SAVE) + 1);
+ 	} else {  /*Set our auto load save as the name_save*/
+-		f_setup.save_name = malloc((strlen(f_setup.tmp_save_name) + strlen(EXT_SAVE) + 1) * sizeof(char));
+-		memcpy(f_setup.save_name, f_setup.tmp_save_name, (strlen(f_setup.story_name) + strlen(EXT_SAVE)) * sizeof(char));
++		f_setup.save_name = strdup(f_setup.tmp_save_name);
+ 		free(f_setup.tmp_save_name);
+ 	}
+ 
+--- a/src/dumb/dinit.c
++++ b/src/dumb/dinit.c
+@@ -256,8 +256,7 @@
+ 		memcpy(f_setup.save_name, f_setup.story_name, (strlen(f_setup.story_name) + strlen(EXT_SAVE)) * sizeof(char));
+ 		strncat(f_setup.save_name, EXT_SAVE, strlen(EXT_SAVE) + 1);
+ 	} else { /* Set our auto load save as the name save */
+-		f_setup.save_name = malloc((strlen(f_setup.tmp_save_name) + strlen(EXT_SAVE) + 1) * sizeof(char));
+-                memcpy(f_setup.save_name, f_setup.tmp_save_name, (strlen(f_setup.tmp_save_name) + strlen(EXT_SAVE)) * sizeof(char));
++		f_setup.save_name = strdup(f_setup.tmp_save_name);
+                 free(f_setup.tmp_save_name);
+ 	}
+ 

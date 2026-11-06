@@ -3,9 +3,7 @@
   writeShellApplication,
   symlinkJoin,
   coreutils,
-  frotz,
   games,
-  zork-stories,
   zork-menu,
 }:
 
@@ -16,12 +14,8 @@ let
     name:
     writeShellApplication {
       name = "${name}-plain";
-      runtimeInputs = [ coreutils ];
       text = ''
-        saves=${savesBase}/${name}
-        mkdir -p "$saves"
-        cd "$saves"
-        exec ${lib.getExe frotz} -R "$saves" ${zork-stories}/share/zork/${name}.z3
+        exec ${lib.getExe zork-menu} "${savesBase}" ${name}
       '';
     };
 

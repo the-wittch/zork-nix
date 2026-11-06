@@ -11,6 +11,8 @@ lib.makeScope newScope (self: {
       ./frotz-restricted-path.patch
       # the exit prompt is an extra key press in a window that's closing anyway
       ./frotz-no-exit-prompt.patch
+      # -L copied the save name using the story path's length, overrunning the buffer
+      ./frotz-load-name.patch
     ];
   });
 
