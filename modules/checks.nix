@@ -180,14 +180,16 @@ in
         save-chooser = pkgs.runCommand "save-chooser" { } ''
           export HOME=$PWD
           mkdir -p saves/zork1
-          touch -d '2026-01-01' saves/zork1/old.qzl
+          touch -d '2026-01-01' saves/zork1/-old.qzl
           touch -d '2026-02-01' saves/zork1/new.qzl
           choose() {
-            printf "$1" | TERM=dumb ${probed.zork-menu}/bin/zork-menu "$PWD/saves" zork1 > /dev/null 2>&1
+            printf "$1" | TERM=dumb ${probed.zork-menu}/bin/zork-menu "$PWD/saves" zork1 > list 2>&1
             grep '^args=' probe
           }
           test "$(choose '\n')" = "args=-R $PWD/saves/zork1 -L $PWD/saves/zork1/new.qzl ${zork.zork-stories}/share/zork/zork1.z3"
-          test "$(choose 2)" = "args=-R $PWD/saves/zork1 -L $PWD/saves/zork1/old.qzl ${zork.zork-stories}/share/zork/zork1.z3"
+          grep -q '1  new.qzl  *2026-02-01' list
+          grep -q -- '2  -old.qzl  *2026-01-01' list
+          test "$(choose 2)" = "args=-R $PWD/saves/zork1 -L $PWD/saves/zork1/-old.qzl ${zork.zork-stories}/share/zork/zork1.z3"
           test "$(choose n)" = "args=-R $PWD/saves/zork1 ${zork.zork-stories}/share/zork/zork1.z3"
           touch $out
         '';

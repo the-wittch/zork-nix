@@ -79,7 +79,7 @@ The story files are `COMPILED/zork{1,2,3}.z3` from Microsoft's [historicalsource
 
 The interpreter is frotz, the curses build from nixpkgs, which draws the status line properly in a terminal. It carries three patches. With `-R`, frotz cut save names short when the save folder's path was short, and a long name could overflow a buffer. Loading a save at start with `-L` overran a buffer too. And when `FROTZ_NO_EXIT_PROMPT` is set, as it is in the CRT, it quits without waiting for a key.
 
-cool-retro-term starts frotz itself with `-e`, with no shell in between. Inside the game, `XDG_DATA_HOME` points at the private settings folder. frotz doesn't use it. Each window gets its own window class, so the dock can show that game's icon.
+cool-retro-term runs the menu with `-e`, and the menu replaces itself with frotz, so quitting the game closes the window. Inside the game, `XDG_DATA_HOME` points at the private settings folder. frotz doesn't use it. Each window gets its own window class, so the dock can show that game's icon.
 
 ## Development
 
